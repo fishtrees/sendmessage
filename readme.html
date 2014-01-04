@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Send Message Plugin Readme</title>
+    <style type="text/css">
+        BODY {
+            font-size : 100%;
+        }
+        BODY, TD, TH {
+            font-family : tahoma, verdana, arial, helvetica, sans-serif;
+            font-size : 0.8em;
+        }
+        H2 {
+             font-size : 10pt;
+             font-weight : bold;
+        }
+        A:hover {
+            text-decoration : none;
+        }
+        H1 {
+            font-family : tahoma, arial, helvetica, sans-serif;
+            font-size : 1.4em;
+            font-weight: bold;
+            border-bottom : 1px #ccc solid;
+            padding-bottom : 2px;
+        }
+
+        TT {
+            font-family : courier new;
+            font-weight : bold;
+            color : #060;
+        }
+        PRE {
+            font-family : courier new;
+            font-size : 100%;
+        }
+        #datatable TH {
+            color : #fff;
+            background-color : #2A448C;
+            text-align : left;
+        }
+        #datatable TD {
+            background-color : #FAF6EF;
+        }
+        #datatable .name {
+            background-color : #DCE2F5;
+        }
+    </style>
+</head>
+<body>
+
+<h1>
+Send Message Plugin Readme
+</h1>
+
+<h2>Overview</h2>
+
+<p>
+The Send Message Plugin provides the ability to send a message packet to an user by sending an http request to the server.
+It is intended to be used by applications automating message packet sending process. 
+This plugin's functionality is useful for applications that need to send a message packet outside of the XMPP clients.
+
+</p>
+
+<h2>Installation</h2>
+
+<p>Copy sendmessage.jar into the plugins directory of your Openfire server. The
+plugin will then be automatically deployed. To upgrade to a new version, copy the new
+sendmessage.jar file over the existing file.</p>
+
+<h2>Configuration</h2>
+
+Access to the service is restricted with a "secret" that can be viewed and 
+set from the Send Message page in the Openfire admin console.  This page is
+located on the admin console under "Server" and then "Server Settings".
+This should really only be considered weak security. The plugin was initially written with the assumption that http access to the Openfire service was
+only available to trusted machines. In the case of the plugin's author, a web application running on the same server as 
+Openfire makes the request.
+
+<h2>Using the Plugin</h2>
+
+To send a message packet, submit HTTP requests to the sendmessage service. 
+The service address is [hostname]plugins/sendMessage/sendmessage. For example,
+if your server name is "example.com", the URL is http://example.com/plugins/sendMessage/sendmessage<p>
+
+The following parameters can be passed into the request:<p>
+
+
+<ul>
+<li>fromUserName, String, 消息发送方的用户名（JID中@符号前面部分）</li>
+<li>fromResource, String, 消息发送方的resource（JID中/符号的后面部分）</li>
+<li>toUserName, String, 消息接收方的用户名（JID中@符号前面部分）</li>
+<li>Content, String, 消息内容</li>
+<ul>
+
+<br><br>
+* When sending double characters (Chinese/Japanese/Korean etc) you should URLEncode the string as utf8.<br> 
+In Java this is done like this<br> 
+URLEncoder.encode(username, "UTF-8"));
+<br>If the strings are encoded incorrectly, double byte characters will look garbeled in the Admin Console.
+
+
+<h2>Server Reply</h2>
+
+The server will reply to all Send Message requests with an JSON result page. 
+<pre>
+{
+    "message": "OK",
+	"code": 0
+}
+<pre>
+If the request was processed successfully, the "message" property will be a text of "OK".
+<p>
+</body>
+</html>

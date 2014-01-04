@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin>
+    <class>com.dinodirect.openfire.plugin.SendMessagePlugin</class>
+    <name>User Service</name>
+    <description>The Send Message Plugin provides the ability to send a message packet to an user by sending an http request to the server.</description>
+    <author>Yu Lin</author>
+    <version>1.0</version>
+    <date>01/04/2014</date>
+    <minServerVersion>3.8.2</minServerVersion>
+    
+    <adminconsole>		
+        <tab id="tab-server">
+            <sidebar id="sidebar-server-settings">
+                <item id="send-message" name="Send Message" url="send-message.jsp"
+                     description="Click to config the sendmessage plugin" />
+            </sidebar>
+        </tab>
+    </adminconsole>
+
+</plugin>
