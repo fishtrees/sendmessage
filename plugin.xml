@@ -2,7 +2,7 @@
 
 <plugin>
     <class>com.dinodirect.openfire.plugin.SendMessagePlugin</class>
-    <name>User Service</name>
+    <name>Send Message</name>
     <description>The Send Message Plugin provides the ability to send a message packet to an user by sending an http request to the server.</description>
     <author>Yu Lin</author>
     <version>1.0</version>
